@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1000" height="800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,3.5 L0,7 z" fill="#333" />
+    </marker>
+    <style>
+      .box { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1; rx: 5; ry: 5; }
+      .box-ui { fill: #e0f2fe; stroke: #7dd3fc; }
+      .box-backend { fill: #f0fdf4; stroke: #86efac; }
+      .box-data { fill: #fefce8; stroke: #fde047; }
+      .box-ai { fill: #f5f3ff; stroke: #c4b5fd; }
+      .box-service { fill: #ecfdf5; stroke: #a7f3d0; }
+      .box-content { fill: #fffbeb; stroke: #fde68a; }
+      .box-external { fill: #fafafa; stroke: #e4e4e7; }
+
+      .label { font-family: 'Noto Sans KR', sans-serif; font-size: 12px; fill: #334155; text-anchor: middle; }
+      .label-group { font-family: 'Noto Sans KR', sans-serif; font-size: 14px; font-weight: bold; fill: #1e293b; text-anchor: middle; }
+      .connector { stroke: #64748b; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+      .group-rect { fill: none; stroke: #94a3b8; stroke-width: 1; stroke-dasharray: 5,5; rx:10; ry:10;}
+    </style>
+  </defs>
+
+  <g id="group-ui">
+    <rect x="50" y="30" width="900" height="120" class="group-rect"/>
+    <text x="500" y="50" class="label-group">사용자 인터페이스 (Frontend)</text>
+    <rect id="ui-youth" x="100" y="70" width="200" height="60" class="box box-ui"/>
+    <text x="200" y="95" class="label">청소년 사용자</text>
+    <text x="200" y="110" class="label">(웹/앱 인터페이스)</text>
+
+    <rect id="ui-guardian" x="400" y="70" width="200" height="60" class="box box-ui"/>
+    <text x="500" y="95" class="label">학부모/교사 사용자</text>
+    <text x="500" y="110" class="label">(모니터링 대시보드)</text>
+
+    <rect id="ui-admin" x="700" y="70" width="200" height="60" class="box box-ui"/>
+    <text x="800" y="95" class="label">관리자</text>
+    <text x="800" y="110" class="label">(시스템 관리)</text>
+  </g>
+
+  <g id="group-backend">
+     <rect x="50" y="170" width="900" height="460" class="group-rect"/>
+     <text x="500" y="190" class="label-group">플랫폼 백엔드 (Backend)</text>
+
+    <g id="subgroup-data-mgmt">
+        <rect x="70" y="210" width="380" height="120" class="group-rect"/>
+        <text x="260" y="230" class="label-group">데이터 관리</text>
+        <rect id="api-gw" x="100" y="250" width="140" height="60" class="box box-data"/>
+        <text x="170" y="275" class="label">데이터 수집</text>
+        <text x="170" y="290" class="label">(API 게이트웨이)</text>
+        <rect id="data-proc" x="280" y="250" width="140" height="60" class="box box-data"/>
+        <text x="350" y="275" class="label">데이터 전처리/정제</text>
+        <rect id="db" x="190" y="350" width="140" height="60" class="box box-data"/>
+        <text x="260" y="375" class="label">데이터베이스</text>
+        <text x="260" y="390" class="label">(사용자, 학습 데이터)</text>
+    </g>
+
+    <g id="subgroup-ai">
+        <rect x="470" y="210" width="460" height="180" class="group-rect"/>
+        <text x="700" y="230" class="label-group">AI 엔진</text>
+        <rect id="ai-cluster" x="500" y="250" width="180" height="50" class="box box-ai"/>
+        <text x="590" y="275" class="label">사용자 유형 분류</text>
+        <rect id="ai-predict" x="720" y="250" width="180" height="50" class="box box-ai"/>
+        <text x="810" y="275" class="label">위험요소 예측</text>
+        <rect id="ai-recommend" x="500" y="320" width="180" height="50" class="box box-ai"/>
+        <text x="590" y="345" class="label">콘텐츠 추천</text>
+        <rect id="ai-nlp" x="720" y="320" width="180" height="50" class="box box-ai"/>
+        <text x="810" y="345" class="label">감성 분석/패턴 인식</text>
+    </g>
+
+    <g id="subgroup-services">
+        <rect x="70" y="430" width="860" height="180" class="group-rect"/>
+        <text x="500" y="450" class="label-group">핵심 서비스 로직</text>
+        <rect id="service-auth" x="100" y="470" width="120" height="50" class="box box-service"/>
+        <text x="160" y="495" class="label">인증/인가</text>
+        <rect id="service-diagnosis" x="250" y="470" width="120" height="50" class="box box-service"/>
+        <text x="310" y="495" class="label">자가진단 서비스</text>
+        <rect id="service-content" x="400" y="470" width="120" height="50" class="box box-service"/>
+        <text x="460" y="495" class="label">콘텐츠 제공</text>
+        <rect id="service-lms" x="550" y="470" width="120" height="50" class="box box-service"/>
+        <text x="610" y="495" class="label">학습 관리(LMS)</text>
+        <rect id="service-notify" x="700" y="470" width="120" height="50" class="box box-service"/>
+        <text x="760" y="495" class="label">알림 서비스</text>
+
+        <rect id="service-community" x="250" y="540" width="120" height="50" class="box box-service"/>
+        <text x="310" y="565" class="label">커뮤니티 서비스</text>
+        <rect id="service-monitor" x="400" y="540" width="120" height="50" class="box box-service"/>
+        <text x="460" y="565" class="label">모니터링 서비스</text>
+    </g>
+
+     <g id="subgroup-content-db">
+        <rect id="content-db" x="590" y="540" width="180" height="50" class="box box-content"/>
+        <text x="680" y="565" class="label">교육 콘텐츠 DB</text>
+     </g>
+  </g>
+
+  <g id="group-external">
+    <rect x="50" y="650" width="900" height="120" class="group-rect"/>
+    <text x="500" y="670" class="label-group">외부 데이터 소스</text>
+    <rect id="mogef-api1" x="100" y="690" width="250" height="60" class="box box-external"/>
+    <text x="225" y="715" class="label">여가부 공공데이터 API</text>
+    <text x="225" y="730" class="label">(청소년종합실태조사)</text>
+
+    <rect id="mogef-api2" x="380" y="690" width="250" height="60" class="box box-external"/>
+    <text x="505" y="715" class="label">여가부 공공데이터 API</text>
+    <text x="505" y="730" class="label">(청소년매체이용실태조사)</text>
+
+    <rect id="user-input" x="660" y="690" width="250" height="60" class="box box-external"/>
+    <text x="785" y="715" class="label">사용자 입력 데이터</text>
+    <text x="785" y="730" class="label">(활동, 피드백 등)</text>
+  </g>
+
+</svg>

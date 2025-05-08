@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <title>정보 탐정단 게임 스크린샷 (시각화)</title>
+  <defs>
+    <style>
+      .background { fill: #f3f4f6; } /* gray-100 */
+      .panel { fill: #ffffff; stroke: #e5e7eb; stroke-width: 1; rx: 8; ry: 8; }
+      .post-panel { fill: #ffffff; stroke: #d1d5db; stroke-width: 1; rx: 6; ry: 6; }
+      .button { fill: #6366f1; stroke: #4f46e5; stroke-width: 1; rx: 4; ry: 4; cursor: pointer; }
+      .button:hover { fill: #4f46e5; }
+      .button-text { fill: #ffffff; font-family: 'Noto Sans KR', sans-serif; font-size: 12px; font-weight: 500; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+      .icon { fill: #ffffff; }
+      .header-text { font-family: 'Noto Sans KR', sans-serif; font-size: 14px; font-weight: bold; fill: #1f2937; }
+      .body-text { font-family: 'Noto Sans KR', sans-serif; font-size: 12px; fill: #374155; }
+      .username-text { font-family: 'Noto Sans KR', sans-serif; font-size: 13px; font-weight: 500; fill: #111827; }
+      .meta-text { font-family: 'Noto Sans KR', sans-serif; font-size: 10px; fill: #6b7280; }
+      .evidence-text { font-family: 'Noto Sans KR', sans-serif; font-size: 12px; font-weight: 500; fill: #10b981; } /* Accent color */
+    </style>
+    <symbol id="icon-analyze" viewBox="0 0 20 20">
+       <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
+    </symbol>
+    <symbol id="icon-source" viewBox="0 0 20 20">
+        <path d="M12.232 4.232a2.5 2.5 0 013.536 3.536l-1.225 1.224a.75.75 0 001.061 1.06l1.224-1.224a4 4 0 00-5.656-5.656l-3 3a4 4 0 00.225 5.872.75.75 0 00.97-.494A2.5 2.5 0 019.87 7.768l3-3z" />
+        <path d="M7.768 15.768a2.5 2.5 0 01-3.536-3.536l1.225-1.224a.75.75 0 00-1.061-1.06l-1.224 1.224a4 4 0 005.656 5.656l3-3a4 4 0 00-.225-5.872.75.75 0 00-.97.494A2.5 2.5 0 0110.13 12.232l-3 3z" />
+    </symbol>
+    <symbol id="icon-expert" viewBox="0 0 20 20">
+       <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
+    </symbol>
+     <symbol id="icon-evidence" viewBox="0 0 20 20">
+         <path fill-rule="evenodd" d="M5.5 3A2.5 2.5 0 003 5.5v2.879a.75.75 0 00.22.53l6.101 6.1a.75.75 0 001.06 0l2.879-2.879a.75.75 0 000-1.06L7.16 5.12a.75.75 0 00-.53-.22H5.5zm1.97 3.97a.75.75 0 10-1.06-1.06A.75.75 0 007.47 6.97zM4.75 3a.75.75 0 000 1.5h.04l.04-.04A2.49 2.49 0 004.75 3z" clip-rule="evenodd" />
+         <path d="M9 3.5a5.5 5.5 0 114.08 9.346l1.464-1.464A.75.75 0 1013.5 10.34l-1.606 1.607a.75.75 0 00.03.03l1.474 1.473a.75.75 0 101.06-1.06l-1.473-1.474v-.01A6.978 6.978 0 0016 9a6.992 6.992 0 00-3.438-6.038.75.75 0 10-.624 1.34A5.48 5.48 0 0114.5 9a5.494 5.494 0 01-1.656 3.97l-1.285-1.286A5.485 5.485 0 019 3.5z" />
+    </symbol>
+  </defs>
+
+  <rect x="0" y="0" width="600" height="400" class="background"/>
+
+  <rect x="15" y="15" width="570" height="370" class="panel"/>
+
+  <text x="30" y="45" class="header-text">미션 #1: 수상한 소셜미디어 게시물</text>
+  <line x1="25" y1="65" x2="575" y2="65" stroke="#e5e7eb" stroke-width="1"/>
+
+  <g id="content-area" transform="translate(30, 80)">
+    <rect width="340" height="290" class="post-panel"/>
+    <g transform="translate(15, 15)">
+      <circle cx="20" cy="20" r="20" fill="#d1d5db"/>
+      <text x="50" y="18" class="username-text">건강전도사123</text>
+      <text x="50" y="35" class="meta-text">2시간 전</text>
+      <foreignObject x="10" y="55" width="320" height="160">
+          <p xmlns="http://www.w3.org/1999/xhtml" class="body-text">
+             이거 진짜 대박! 😲😲 새로 나온 '슈퍼에너지 드링크' 마셨더니 피로가 싹 사라지고 집중력 완전 UP! 👍 과학적으로 증명된 성분이라는데, 부작용도 전혀 없어요. 지금 바로 구매하면 50% 할인! #건강 #에너지 #필수템 #할인
+             <tspan x="0" dy="1.4em"> (링크: superdrink.kr)</tspan>
+          </p>
+      </foreignObject>
+      <rect x="10" y="230" width="60" height="25" rx="4" fill="#e5e7eb"/>
+       <text x="40" y="246" class="meta-text" text-anchor="middle">👍 1.2k</text>
+       <rect x="80" y="230" width="60" height="25" rx="4" fill="#e5e7eb"/>
+       <text x="110" y="246" class="meta-text" text-anchor="middle">💬 256</text>
+       <rect x="150" y="230" width="60" height="25" rx="4" fill="#e5e7eb"/>
+       <text x="180" y="246" class="meta-text" text-anchor="middle">🔁 512</text>
+    </g>
+  </g>
+
+  <g id="tool-panel" transform="translate(390, 80)">
+    <rect width="180" height="290" class="panel" fill="#f9fafb"/>
+    <text x="90" y="25" class="header-text" text-anchor="middle">탐정 도구</text>
+    <line x1="10" y1="40" x2="170" y2="40" stroke="#e5e7eb" stroke-width="1"/>
+
+    <g transform="translate(20, 60)">
+      <rect width="140" height="40" class="button"/>
+      <use href="#icon-analyze" width="16" height="16" x="15" y="12" class="icon"/>
+      <text x="80" y="20" class="button-text">게시물 분석</text>
+    </g>
+    <g transform="translate(20, 115)">
+      <rect width="140" height="40" class="button"/>
+      <use href="#icon-source" width="16" height="16" x="15" y="12" class="icon"/>
+      <text x="80" y="20" class="button-text">출처 확인</text>
+    </g>
+    <g transform="translate(20, 170)">
+      <rect width="140" height="40" class="button"/>
+      <use href="#icon-expert" width="16" height="16" x="15" y="12" class="icon"/>
+      <text x="80" y="20" class="button-text">전문가 의견</text>
+    </g>
+     <g transform="translate(20, 225)">
+      <rect width="140" height="40" class="button"/>
+      <use href="#icon-evidence" width="16" height="16" x="15" y="12" class="icon"/>
+      <text x="80" y="20" class="button-text">증거 수집</text>
+    </g>
+  </g>
+
+  <text x="30" y="385" class="evidence-text">수집된 증거: 1 / 3</text>
+
+</svg>
