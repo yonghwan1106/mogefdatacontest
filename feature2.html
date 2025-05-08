@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>맞춤형 교육 콘텐츠 | AI 기반 청소년 맞춤형 디지털 미디어 리터러시 교육 플랫폼</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10B981',
+                        secondary: '#3B82F6',
+                        accent: '#6366F1',
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .gradient-bg {
+            background: linear-gradient(90deg, #10B981 0%, #3B82F6 100%);
+        }
+        .feature-animation {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- 네비게이션 -->
+    <nav class="gradient-bg text-white shadow-lg fixed w-full z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold">디지털 리터러시 AI</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html#overview" class="hover:text-gray-200">개요</a>
+                <a href="index.html#features" class="hover:text-gray-200">주요 기능</a>
+                <a href="index.html#data" class="hover:text-gray-200">데이터 활용</a>
+                <a href="index.html#ai" class="hover:text-gray-200">AI 기술</a>
+                <a href="index.html#benefits" class="hover:text-gray-200">기대효과</a>
+            </div>
+            <button class="md:hidden text-white focus:outline-none" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- 모바일 메뉴 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-2">
+                <a href="index.html#overview" class="hover:text-gray-200">개요</a>
+                <a href="index.html#features" class="hover:text-gray-200">주요 기능</a>
+                <a href="index.html#data" class="hover:text-gray-200">데이터 활용</a>
+                <a href="index.html#ai" class="hover:text-gray-200">AI 기술</a>
+                <a href="index.html#benefits" class="hover:text-gray-200">기대효과</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 헤더 -->
+    <header class="pt-24 pb-12 md:pt-32 md:pb-24 bg-gradient-to-r from-green-600 to-green-400 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <div class="feature-animation">
+                <div class="inline-block bg-white p-3 rounded-full mb-6">
+                    <i class="fas fa-book-reader text-green-600 text-3xl"></i>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">맞춤형 교육 콘텐츠</h1>
+                <p class="text-xl max-w-3xl mx-auto">AI 기반 추천 시스템으로 개인별 특성과 역량에 따른 최적의 교육 콘텐츠를 제공합니다.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="py-16">
+        <div class="container mx-auto px-4">
+            <!-- 개요 섹션 -->
+            <section class="mb-16 feature-animation delay-1">
+                <h2 class="text-3xl font-bold mb-8 text-center">맞춤형 콘텐츠 추천 시스템</h2>
+                <div class="bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <p class="text-gray-700 mb-6">
+                        개인화된 자가진단 결과와 공공데이터 분석을 기반으로, AI 추천 시스템이 청소년 개인별 특성과 요구에 
+                        맞는 최적의 교육 콘텐츠를 제공합니다. 다양한 유형의 콘텐츠를 통해 효과적이고 지속가능한 
+                        디지털 미디어 리터러시 학습 경험을 설계합니다.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-green-600">추천 시스템 특징</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>개인별 학습 스타일 및 선호도 반영</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>역량 수준별 단계적 학습 경로 제시</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>또래 집단의 콘텐츠 이용 패턴 분석</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>학습 성과 기반 지속적 추천 최적화</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>관심사와 연계한 흥미 유발 컨텐츠 추천</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-green-600">추천 콘텐츠 유형</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-film text-yellow-500 mt-1 mr-2"></i>
+                                    <span>교육 영상 및 인터랙티브 미디어</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-puzzle-piece text-yellow-500 mt-1 mr-2"></i>
+                                    <span>게임 및 시뮬레이션</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-book text-yellow-500 mt-1 mr-2"></i>
+                                    <span>디지털 텍스트 및 인포그래픽</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-tasks text-yellow-500 mt-1 mr-2"></i>
+                                    <span>실습 과제 및 프로젝트</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-comments text-yellow-500 mt-1 mr-2"></i>
+                                    <span>토론 및 협업 활동</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 콘텐츠 카테고리 섹션 -->
+            <section class="mb-16 feature-animation delay-2">
+                <h2 class="text-3xl font-bold mb-8 text-center">콘텐츠 카테고리</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                        <div class="h-40 bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center">
+                            <i class="fas fa-search text-white text-5xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-3">기초 리터러시</h3>
+                            <div class="mb-4">
+                                <div class="text-sm font-medium text-gray-500 mb-1">추천 연령대</div>
+                                <div class="flex space-x-2">
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">초등학생</span>
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">중학생</span>
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">고등학생</span>
+                                </div>
+                            </div>
+                            <ul class="space-y-2 text-gray-700 text-sm mb-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-blue-500 mt-1 mr-2"></i>
+                                    <span>디지털 시민의식 기초</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-blue-500 mt-1 mr-2"></i>
+                                    <span>정보 검색 및 평가 방법</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-blue-500 mt-1 mr-2"></i>
+                                    <span>개인정보 보호 기초</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="inline-block text-blue-600 font-medium hover:text-blue-800 transition">
+                                콘텐츠 살펴보기 <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                        <div class="h-40 bg-gradient-to-r from-red-400 to-red-600 flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-white text-5xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-3">위험 대응</h3>
+                            <div class="mb-4">
+                                <div class="text-sm font-medium text-gray-500 mb-1">추천 연령대</div>
+                                <div class="flex space-x-2">
+                                    <span class="px-2 py-1 bg-red-100 text-red-800 rounded text-xs">중학생</span>
+                                    <span class="px-2 py-1 bg-red-100 text-red-800 rounded text-xs">고등학생</span>
+                                </div>
+                            </div>
+                            <ul class="space-y-2 text-gray-700 text-sm mb-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-red-500 mt-1 mr-2"></i>
+                                    <span>사이버 폭력 대처법</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-red-500 mt-1 mr-2"></i>
+                                    <span>디지털 과의존 예방</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-red-500 mt-1 mr-2"></i>
+                                    <span>유해 콘텐츠 식별 및 대응</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="inline-block text-red-600 font-medium hover:text-red-800 transition">
+                                콘텐츠 살펴보기 <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                        <div class="h-40 bg-gradient-to-r from-purple-400 to-purple-600 flex items-center justify-center">
+                            <i class="fas fa-paint-brush text-white text-5xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-3">창의적 활용</h3>
+                            <div class="mb-4">
+                                <div class="text-sm font-medium text-gray-500 mb-1">추천 연령대</div>
+                                <div class="flex space-x-2">
+                                    <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs">중학생</span>
+                                    <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs">고등학생</span>
+                                </div>
+                            </div>
+                            <ul class="space-y-2 text-gray-700 text-sm mb-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-purple-500 mt-1 mr-2"></i>
+                                    <span>디지털 스토리텔링</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-purple-500 mt-1 mr-2"></i>
+                                    <span>미디어 콘텐츠 제작</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-purple-500 mt-1 mr-2"></i>
+                                    <span>기초 코딩 및 앱 개발</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="inline-block text-purple-600 font-medium hover:text-purple-800 transition">
+                                콘텐츠 살펴보기 <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                        <div class="h-40 bg-gradient-to-r from-yellow-400 to-yellow-600 flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white text-5xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-3">실전 활용</h3>
+                            <div class="mb-4">
+                                <div class="text-sm font-medium text-gray-500 mb-1">추천 연령대</div>
+                                <div class="flex space-x-2">
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs">중학생</span>
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs">고등학생</span>
+                                </div>
+                            </div>
+                            <ul class="space-y-2 text-gray-700 text-sm mb-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-yellow-500 mt-1 mr-2"></i>
+                                    <span>학업 및 진로 탐색에 미디어 활용</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-yellow-500 mt-1 mr-2"></i>
+                                    <span>온라인 협업 도구 활용</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-yellow-500 mt-1 mr-2"></i>
+                                    <span>디지털 시민 활동 참여</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="inline-block text-yellow-600 font-medium hover:text-yellow-800 transition">
+                                콘텐츠 살펴보기 <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                        <div class="h-40 bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center">
+                            <i class="fas fa-users text-white text-5xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-3">소통 및 협업</h3>
+                            <div class="mb-4">
+                                <div class="text-sm font-medium text-gray-500 mb-1">추천 연령대</div>
+                                <div class="flex space-x-2">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">초등학생</span>
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">중학생</span>
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">고등학생</span>
+                                </div>
+                            </div>
+                            <ul class="space-y-2 text-gray-700 text-sm mb-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-green-500 mt-1 mr-2"></i>
+                                    <span>효과적인 온라인 소통</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-green-500 mt-1 mr-2"></i>
+                                    <span>디지털 에티켓</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-green-500 mt-1 mr-2"></i>
+                                    <span>온라인 협업 프로젝트</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="inline-block text-green-600 font-medium hover:text-green-800 transition">
+                                콘텐츠 살펴보기 <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                        <div class="h-40 bg-gradient-to-r from-indigo-400 to-indigo-600 flex items-center justify-center">
+                            <i class="fas fa-lock text-white text-5xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-3">온라인 보안</h3>
+                            <div class="mb-4">
+                                <div class="text-sm font-medium text-gray-500 mb-1">추천 연령대</div>
+                                <div class="flex space-x-2">
+                                    <span class="px-2 py-1 bg-indigo-100 text-indigo-800 rounded text-xs">중학생</span>
+                                    <span class="px-2 py-1 bg-indigo-100 text-indigo-800 rounded text-xs">고등학생</span>
+                                </div>
+                            </div>
+                            <ul class="space-y-2 text-gray-700 text-sm mb-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-indigo-500 mt-1 mr-2"></i>
+                                    <span>개인정보 보호 심화</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-indigo-500 mt-1 mr-2"></i>
+                                    <span>사이버 보안 기초</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-angle-right text-indigo-500 mt-1 mr-2"></i>
+                                    <span>디지털 신원 관리</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="inline-block text-indigo-600 font-medium hover:text-indigo-800 transition">
+                                콘텐츠 살펴보기 <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 맞춤형 추천 알고리즘 섹션 -->
+            <section class="mb-16 feature-animation delay-3">
+                <h2 class="text-3xl font-bold mb-8 text-center">맞춤형 추천 알고리즘</h2>
+                <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-lg p-8">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-green-600">하이브리드 추천 시스템</h3>
+                            <p class="text-gray-700 mb-4">
+                                개인 맞춤형 교육 콘텐츠 추천을 위해 콘텐츠 기반 필터링과 협업 필터링을 결합한 하이브리드 추천 시스템을 구현합니다.
+                            </p>
+                            <div class="space-y-4">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium mb-2">콘텐츠 기반 필터링</h4>
+                                    <p class="text-gray-700 text-sm">
+                                        사용자의 과거 학습 이력, 선호도, 진단 결과를 분석하여 유사한 콘텐츠를 추천합니다.
+                                    </p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium mb-2">협업 필터링</h4>
+                                    <p class="text-gray-700 text-sm">
+                                        유사한 특성을 가진 다른 사용자들의 선호도와 패턴을 분석하여 새로운 콘텐츠를 발견합니다.
+                                    </p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium mb-2">강화 학습</h4>
+                                    <p class="text-gray-700 text-sm">
+                                        사용자의 피드백과 학습 성과를 기반으로 추천 알고리즘을 지속적으로 개선합니다.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-green-50 p-6 rounded-lg">
+                            <h3 class="text-xl font-semibold mb-4 text-green-600 text-center">추천 알고리즘 작동 원리</h3>
+                            <div class="relative h-80">
+                                <div class="absolute inset-0">
+                                    <img src="images/recommendation_algorithm.svg" alt="추천 알고리즘 시각화" class="w-full h-full object-cover rounded-lg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 콘텐츠 예시 섹션 -->
+            <section class="mb-16 feature-animation delay-4">
+                <h2 class="text-3xl font-bold mb-8 text-center">콘텐츠 예시</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="bg-blue-600 text-white p-4">
+                            <h3 class="font-semibold text-lg">디지털 정보 평가하기</h3>
+                            <div class="text-sm opacity-80">기초 리터러시 > 정보 검색 및 평가</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-1/3">
+                                    <div class="bg-gradient-to-br from-blue-400 to-blue-600 p-6 h-32 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-search-plus text-white text-5xl"></i>
+                                    </div>
+                                </div>
+                                <div class="w-2/3 pl-4">
+                                    <div class="flex items-center mb-2">
+                                        <div class="flex items-center">
+                                            <div class="text-yellow-500 flex">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                            <span class="text-gray-600 text-sm ml-2">4.5 (320명)</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 mb-2">
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">초급</span>
+                                        <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs">30분</span>
+                                        <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs">인터랙티브</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600">
+                                        디지털 정보의 신뢰성과 정확성을 평가하는 방법을 배우는 인터랙티브 과정입니다.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-1/4 text-sm font-medium">학습 목표</div>
+                                    <div class="w-3/4 text-sm text-gray-600">
+                                        정보의 출처 확인, 사실과 의견 구분, 다중 출처 비교 방법 습득
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-1/4 text-sm font-medium">학습 방식</div>
+                                    <div class="w-3/4 text-sm text-gray-600">
+                                        비디오 강의, 퀴즈, 실습 활동
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-1/4 text-sm font-medium">추천 대상</div>
+                                    <div class="w-3/4 text-sm text-gray-600">
+                                        정보 리터러시 역량이 필요한 모든 청소년
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <a href="#" class="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition">
+                                    학습 시작하기
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="bg-red-600 text-white p-4">
+                            <h3 class="font-semibold text-lg">디지털 과의존 예방하기</h3>
+                            <div class="text-sm opacity-80">위험 대응 > 디지털 과의존 예방</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-1/3">
+                                    <div class="bg-gradient-to-br from-red-400 to-red-600 p-6 h-32 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-balance-scale text-white text-5xl"></i>
+                                    </div>
+                                </div>
+                                <div class="w-2/3 pl-4">
+                                    <div class="flex items-center mb-2">
+                                        <div class="flex items-center">
+                                            <div class="text-yellow-500 flex">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </div>
+                                            <span class="text-gray-600 text-sm ml-2">4.0 (245명)</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 mb-2">
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">중급</span>
+                                        <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs">45분</span>
+                                        <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">시뮬레이션</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600">
+                                        디지털 기기와 미디어의 균형 잡힌 이용 방법을 배우는 시뮬레이션 기반 과정입니다.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-1/4 text-sm font-medium">학습 목표</div>
+                                    <div class="w-3/4 text-sm text-gray-600">
+                                        디지털 미디어 균형적 사용, 자기 조절 전략 습득, 건강한 디지털 습관 형성
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-1/4 text-sm font-medium">학습 방식</div>
+                                    <div class="w-3/4 text-sm text-gray-600">
+                                        상황별 시뮬레이션, 자가 진단, 실천 미션 부여
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-1/4 text-sm font-medium">추천 대상</div>
+                                    <div class="w-3/4 text-sm text-gray-600">
+                                        미디어 이용 시간이 많거나 디지털 과의존 위험이 있는 청소년
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <a href="#" class="inline-block bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition">
+                                    학습 시작하기
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 학습 경로 설계 -->
+            <section class="feature-animation delay-5">
+                <h2 class="text-3xl font-bold mb-8 text-center">개인화된 학습 경로</h2>
+                <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+                    <p class="text-gray-700 mb-8 text-center">
+                        자가진단 결과와 학습 목표에 따라 단계별 맞춤형 학습 경로를 설계해 드립니다.
+                    </p>
+                    
+                    <div class="relative mb-12">
+                        <div class="absolute h-1 bg-green-200 top-1/2 transform -translate-y-1/2 left-0 right-0 z-0"></div>
+                        <div class="relative z-10 flex justify-between">
+                            <div class="flex flex-col items-center">
+                                <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white">1</div>
+                                <div class="mt-2 text-center w-24 text-sm">자가진단</div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white">2</div>
+                                <div class="mt-2 text-center w-24 text-sm">기초 역량 강화</div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white">3</div>
+                                <div class="mt-2 text-center w-24 text-sm">심화 학습</div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white">4</div>
+                                <div class="mt-2 text-center w-24 text-sm">실전 활용</div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white">5</div>
+                                <div class="mt-2 text-center w-24 text-sm">역량 평가</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-green-50 p-6 rounded-lg">
+                            <h3 class="text-xl font-semibold mb-4 text-center text-green-600">학습 경로 특징</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>개인별 역량 수준에 맞는 단계적 학습</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>학습 진행에 따른 콘텐츠 난이도 조정</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>다양한 학습 유형을 포함한 균형 잡힌 구성</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>학습 성과에 따른 경로 지속적 최적화</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>실생활 적용을 위한 실천 과제 포함</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-center text-green-600">맞춤형 학습 계획</h3>
+                            <div class="bg-white border border-gray-200 rounded-lg">
+                                <div class="border-b border-gray-200 p-4">
+                                    <div class="flex justify-between items-center">
+                                        <h4 class="font-medium">김민준님의 학습 계획</h4>
+                                        <span class="text-sm text-gray-500">2025.05.04</span>
+                                    </div>
+                                </div>
+                                <div class="p-4">
+                                    <div class="space-y-4">
+                                        <div>
+                                            <h5 class="font-medium text-green-600 mb-2">1주차: 디지털 과의존 예방</h5>
+                                            <ul class="text-sm text-gray-700 space-y-1">
+                                                <li>· 디지털 미디어와 우리의 삶 (15분)</li>
+                                                <li>· 미디어 이용 자가 모니터링 (30분)</li>
+                                                <li>· 디지털 디톡스 실천 미션 (일주일)</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-medium text-green-600 mb-2">2주차: 정보 검색 및 평가</h5>
+                                            <ul class="text-sm text-gray-700 space-y-1">
+                                                <li>· 효과적인 정보 검색 전략 (20분)</li>
+                                                <li>· 정보의 신뢰성 평가하기 (25분)</li>
+                                                <li>· 주제별 정보 탐색 프로젝트 (2시간)</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-medium text-green-600 mb-2">3주차: 디지털 시민의식</h5>
+                                            <ul class="text-sm text-gray-700 space-y-1">
+                                                <li>· 온라인 커뮤니티와 규범 (15분)</li>
+                                                <li>· 디지털 발자국 관리하기 (20분)</li>
+                                                <li>· 온라인 시민 참여 활동 (1시간)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- CTA 섹션 -->
+    <section class="py-12 bg-gradient-to-r from-green-600 to-green-400 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">맞춤형 교육 콘텐츠로 학습을 시작하세요</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">
+                AI 기반 추천 시스템이 여러분에게 딱 맞는 디지털 미디어 리터러시 학습 경험을 제공합니다.
+                지금 바로 자가진단을 통해 개인화된 학습을 시작해보세요.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="feature1.html" class="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">자가진단 시작하기</a>
+                <a href="index.html#features" class="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition">다른 기능 살펴보기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">AI 기반 청소년 맞춤형 디지털 미디어 리터러시 교육 플랫폼</h4>
+                    <p class="text-gray-400">2025년 여성가족부 AI·데이터 융복합 아이디어 제안</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">바로가기</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html#overview" class="hover:text-white transition">개요</a></li>
+                        <li><a href="index.html#features" class="hover:text-white transition">주요 기능</a></li>
+                        <li><a href="index.html#data" class="hover:text-white transition">데이터 활용</a></li>
+                        <li><a href="index.html#ai" class="hover:text-white transition">AI 기술</a></li>
+                        <li><a href="index.html#benefits" class="hover:text-white transition">기대효과</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">연락처</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>sanoramyun8@gmail.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2"></i>
+                            <span>010-7939-3123</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>제안자: 박용환</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-500">
+                <p>&copy; 2025 AI 기반 청소년 맞춤형 디지털 미디어 리터러시 교육 플랫폼. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 자바스크립트 -->
+    <script>
+        // 모바일 메뉴 토글
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 애니메이션 실행
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.feature-animation');
+            animatedElements.forEach(element => {
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)
+                }, 100);
+            });
+        });
+        
+        // 카드 호버 효과
+        const cards = document.querySelectorAll('.card-hover');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('shadow-xl');
+            });
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('shadow-xl');
+            });
+        });
+    </script>
+</body>
+</html>
+

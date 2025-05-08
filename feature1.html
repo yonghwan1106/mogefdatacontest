@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인화된 자가진단 | AI 기반 청소년 맞춤형 디지털 미디어 리터러시 교육 플랫폼</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        accent: '#6366F1',
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .gradient-bg {
+            background: linear-gradient(90deg, #3B82F6 0%, #10B981 100%);
+        }
+        .radar-chart {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        .radar-chart-polygon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+        .radar-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .feature-animation {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- 네비게이션 -->
+    <nav class="gradient-bg text-white shadow-lg fixed w-full z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold">디지털 리터러시 AI</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html#overview" class="hover:text-gray-200">개요</a>
+                <a href="index.html#features" class="hover:text-gray-200">주요 기능</a>
+                <a href="index.html#data" class="hover:text-gray-200">데이터 활용</a>
+                <a href="index.html#ai" class="hover:text-gray-200">AI 기술</a>
+                <a href="index.html#benefits" class="hover:text-gray-200">기대효과</a>
+            </div>
+            <button class="md:hidden text-white focus:outline-none" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- 모바일 메뉴 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-2">
+                <a href="index.html#overview" class="hover:text-gray-200">개요</a>
+                <a href="index.html#features" class="hover:text-gray-200">주요 기능</a>
+                <a href="index.html#data" class="hover:text-gray-200">데이터 활용</a>
+                <a href="index.html#ai" class="hover:text-gray-200">AI 기술</a>
+                <a href="index.html#benefits" class="hover:text-gray-200">기대효과</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 헤더 -->
+    <header class="pt-24 pb-12 md:pt-32 md:pb-24 bg-gradient-to-r from-blue-600 to-blue-400 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <div class="feature-animation">
+                <div class="inline-block bg-white p-3 rounded-full mb-6">
+                    <i class="fas fa-clipboard-check text-blue-600 text-3xl"></i>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">개인화된 자가진단</h1>
+                <p class="text-xl max-w-3xl mx-auto">청소년의 미디어 이용 패턴, 디지털 역량, 위험요소를 종합적으로 분석하여 맞춤형 자가진단 보고서를 제공합니다.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="py-16">
+        <div class="container mx-auto px-4">
+            <!-- 개요 섹션 -->
+            <section class="mb-16 feature-animation delay-1">
+                <h2 class="text-3xl font-bold mb-8 text-center">자가진단 개요</h2>
+                <div class="bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <p class="text-gray-700 mb-6">
+                        개인화된 자가진단 시스템은 청소년이 자신의 디지털 미디어 이용 현황과 역량을 객관적으로 파악하고, 
+                        개선이 필요한 영역을 식별하는 데 도움을 주는 핵심 기능입니다. 여성가족부의 청소년 미디어 관련 
+                        공공데이터와 AI 알고리즘을 결합하여 정확하고 맞춤화된 분석 결과를 제공합니다.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-blue-600">진단 영역</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>미디어 이용 시간 및 패턴 분석</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>디지털 정보 이해 및 평가 능력</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>디지털 콘텐츠 창작 역량</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>온라인 소통 및 협업 능력</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>디지털 시민의식 수준</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>유해환경 노출 위험도</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-blue-600">진단 방법</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                    <span>맞춤형 진단 문항 제시</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                    <span>이용 데이터 수집 및 분석</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                    <span>또래 집단과의 비교 분석</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                    <span>시계열 변화 추적</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                                    <span>맞춤형 개선 방안 제시</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 자가진단 프로세스 섹션 -->
+            <section class="mb-16 feature-animation delay-2">
+                <h2 class="text-3xl font-bold mb-8 text-center">자가진단 프로세스</h2>
+                <div class="max-w-4xl mx-auto">
+                    <div class="relative h-24 md:h-28 mb-12">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="h-1 w-full bg-blue-200 rounded"></div>
+                        </div>
+                        <div class="relative flex justify-between">
+                            <div class="flex flex-col items-center">
+                                <div class="bg-blue-500 text-white rounded-full h-14 w-14 flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-user-plus text-xl"></i>
+                                </div>
+                                <div class="text-center mt-2 text-sm w-24 font-medium">사용자 정보 입력</div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="bg-blue-500 text-white rounded-full h-14 w-14 flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-question-circle text-xl"></i>
+                                </div>
+                                <div class="text-center mt-2 text-sm w-24 font-medium">맞춤형 진단 진행</div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="bg-blue-500 text-white rounded-full h-14 w-14 flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-brain text-xl"></i>
+                                </div>
+                                <div class="text-center mt-2 text-sm w-24 font-medium">AI 데이터 분석</div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="bg-blue-500 text-white rounded-full h-14 w-14 flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-chart-pie text-xl"></i>
+                                </div>
+                                <div class="text-center mt-2 text-sm w-24 font-medium">결과 시각화</div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="bg-blue-500 text-white rounded-full h-14 w-14 flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-clipboard-list text-xl"></i>
+                                </div>
+                                <div class="text-center mt-2 text-sm w-24 font-medium">맞춤형 추천</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white rounded-lg shadow-lg p-6">
+                            <h3 class="text-xl font-semibold mb-4 text-blue-600">유해환경 노출 위험도 평가</h3>
+                            <p class="text-gray-700 mb-4">
+                                청소년들의 디지털 미디어 이용 패턴과 행동 데이터를 기반으로 사이버 폭력, 디지털 과의존, 유해 콘텐츠 노출 등 
+                                다양한 위험 요소에 대한 노출 가능성을 평가합니다.
+                            </p>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-1/2">디지털 과의존 위험도</div>
+                                    <div class="w-1/2 h-4 bg-gray-200 rounded-full overflow-hidden">
+                                        <div class="bg-red-500 h-full w-3/4"></div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center mb-4">
+                                    <div class="w-1/2">유해콘텐츠 노출 위험도</div>
+                                    <div class="w-1/2 h-4 bg-gray-200 rounded-full overflow-hidden">
+                                        <div class="bg-yellow-500 h-full w-1/2"></div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-1/2">사이버 폭력 위험도</div>
+                                    <div class="w-1/2 h-4 bg-gray-200 rounded-full overflow-hidden">
+                                        <div class="bg-green-500 h-full w-1/4"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-lg p-6">
+                            <h3 class="text-xl font-semibold mb-4 text-blue-600">디지털 역량 진단</h3>
+                            <p class="text-gray-700 mb-4">
+                                디지털 정보 활용 능력, 비판적 사고력, 소통 및 협업 능력, 디지털 창작 역량 등 
+                                다양한 영역에서의 디지털 역량을 종합적으로 평가합니다.
+                            </p>
+                            <div class="radar-chart">
+                                <div class="radar-grid"></div>
+                                <div class="radar-grid" style="width: 75%; height: 75%;"></div>
+                                <div class="radar-grid" style="width: 50%; height: 50%;"></div>
+                                <div class="radar-grid" style="width: 25%; height: 25%;"></div>
+                                <svg class="radar-chart-polygon" width="250" height="250" viewBox="0 0 250 250">
+                                    <polygon points="125,25 200,75 200,175 125,225 50,175 50,75" fill="rgba(59, 130, 246, 0.3)" stroke="#3B82F6" stroke-width="2"></polygon>
+                                    <text x="125" y="15" text-anchor="middle" font-size="12">정보 활용</text>
+                                    <text x="195" y="70" text-anchor="start" font-size="11">비판적 사고</text>
+                                    <text x="200" y="180" text-anchor="start" font-size="11">소통 협업</text>
+                                    <text x="125" y="240" text-anchor="middle" font-size="12">창작 역량</text>
+                                    <text x="50" y="180" text-anchor="end" font-size="12">시민 의식</text>
+                                    <text x="50" y="70" text-anchor="end" font-size="12">안전 의식</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 결과 리포트 섹션 -->
+            <section class="mb-16 feature-animation delay-3">
+                <h2 class="text-3xl font-bold mb-8 text-center">맞춤형 결과 리포트</h2>
+                <div class="max-w-5xl mx-auto">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="p-6 border-b border-gray-200">
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-xl font-semibold text-blue-600">김민준님의 디지털 미디어 리터러시 자가진단 결과</h3>
+                                <span class="text-sm text-gray-500">2025.05.04</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                                <div class="bg-blue-50 rounded-lg p-4 text-center">
+                                    <h4 class="font-medium mb-2">종합 역량 점수</h4>
+                                    <div class="text-3xl font-bold text-blue-600">78<span class="text-xl">/100</span></div>
+                                    <p class="text-sm text-gray-600 mt-2">상위 25% 수준</p>
+                                </div>
+                                <div class="bg-green-50 rounded-lg p-4 text-center">
+                                    <h4 class="font-medium mb-2">강점 영역</h4>
+                                    <div class="text-xl font-bold text-green-600">정보 검색 및 평가</div>
+                                    <p class="text-sm text-gray-600 mt-2">상위 15% 수준</p>
+                                </div>
+                                <div class="bg-yellow-50 rounded-lg p-4 text-center">
+                                    <h4 class="font-medium mb-2">개선 필요 영역</h4>
+                                    <div class="text-xl font-bold text-yellow-600">디지털 과의존</div>
+                                    <p class="text-sm text-gray-600 mt-2">하위 30% 수준</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-8">
+                                <h4 class="text-lg font-semibold mb-4">역량별 세부 분석</h4>
+                                <div class="space-y-4">
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">정보 검색 및 평가</span>
+                                            <span>85%</span>
+                                        </div>
+                                        <div class="h-2 bg-gray-200 rounded-full">
+                                            <div class="h-2 bg-blue-500 rounded-full" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">비판적 사고</span>
+                                            <span>75%</span>
+                                        </div>
+                                        <div class="h-2 bg-gray-200 rounded-full">
+                                            <div class="h-2 bg-blue-500 rounded-full" style="width: 75%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">소통 및 협업</span>
+                                            <span>80%</span>
+                                        </div>
+                                        <div class="h-2 bg-gray-200 rounded-full">
+                                            <div class="h-2 bg-blue-500 rounded-full" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">디지털 창작</span>
+                                            <span>70%</span>
+                                        </div>
+                                        <div class="h-2 bg-gray-200 rounded-full">
+                                            <div class="h-2 bg-blue-500 rounded-full" style="width: 70%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">디지털 시민의식</span>
+                                            <span>82%</span>
+                                        </div>
+                                        <div class="h-2 bg-gray-200 rounded-full">
+                                            <div class="h-2 bg-blue-500 rounded-full" style="width: 82%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">디지털 안전 의식</span>
+                                            <span>65%</span>
+                                        </div>
+                                        <div class="h-2 bg-gray-200 rounded-full">
+                                            <div class="h-2 bg-blue-500 rounded-full" style="width: 65%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-8">
+                                <h4 class="text-lg font-semibold mb-4">위험요소 평가</h4>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <p class="mb-4">김민준님은 <span class="font-semibold text-red-600">디지털 과의존</span> 위험이 다소 높습니다. 일일 미디어 이용 시간이 또래 평균을 약 30% 초과하며, 심야 시간대 이용 빈도가 높습니다.</p>
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-1/3 text-sm">디지털 과의존 위험도</div>
+                                        <div class="w-2/3 flex items-center">
+                                            <div class="w-2/3 h-4 bg-gray-200 rounded-full overflow-hidden mr-2">
+                                                <div class="bg-red-500 h-full w-3/4"></div>
+                                            </div>
+                                            <span class="text-sm font-medium">위험</span>
+                                        </div>
+                                    </div>
+                                    <p class="mt-4 text-sm text-gray-600">연령, 성별, 지역 등을 고려한 또래 집단과 비교 분석한 결과입니다.</p>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-lg font-semibold mb-4">맞춤형 추천</h4>
+                                <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                                    <h5 class="font-medium text-blue-700 mb-2">추천 학습 경로</h5>
+                                    <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                                        <li>디지털 미디어 균형 잡힌 이용 가이드 (초급)</li>
+                                        <li>스마트폰 과의존 예방 프로그램 (중급)</li>
+                                        <li>건강한 미디어 이용 습관 형성하기 (심화)</li>
+                                    </ol>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h5 class="font-medium text-green-700 mb-2">강점 활용 방안</h5>
+                                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                        <li>또래 멘토링: 정보 검색 및 평가 역량을 활용한 또래 멘토 활동 참여</li>
+                                        <li>창작 활동: 디지털 콘텐츠 창작 동아리나 공모전 참가 추천</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 맞춤형 추천 시스템 -->
+            <section class="feature-animation delay-4">
+                <h2 class="text-3xl font-bold mb-8 text-center">AI 기반 맞춤형 추천</h2>
+                <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+                    <p class="text-gray-700 mb-8 text-center">
+                        자가진단 결과를 기반으로 개인별 특성과 요구에 맞는 교육 콘텐츠와 개선 방안을 추천해 드립니다.
+                    </p>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-blue-50 rounded-lg p-6 hover:shadow-lg transition duration-300">
+                            <div class="text-center mb-4">
+                                <div class="inline-block bg-blue-100 p-3 rounded-full">
+                                    <i class="fas fa-book text-blue-600 text-xl"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-semibold text-center mb-3">학습 콘텐츠</h3>
+                            <p class="text-gray-700 text-sm text-center">개인 역량과 관심사에 맞는 맞춤형 교육 콘텐츠를 추천해 드립니다.</p>
+                        </div>
+                        <div class="bg-green-50 rounded-lg p-6 hover:shadow-lg transition duration-300">
+                            <div class="text-center mb-4">
+                                <div class="inline-block bg-green-100 p-3 rounded-full">
+                                    <i class="fas fa-tasks text-green-600 text-xl"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-semibold text-center mb-3">실천 과제</h3>
+                            <p class="text-gray-700 text-sm text-center">일상에서 실천할 수 있는 단계별 과제와 미션을 제안합니다.</p>
+                        </div>
+                        <div class="bg-purple-50 rounded-lg p-6 hover:shadow-lg transition duration-300">
+                            <div class="text-center mb-4">
+                                <div class="inline-block bg-purple-100 p-3 rounded-full">
+                                    <i class="fas fa-user-friends text-purple-600 text-xl"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-semibold text-center mb-3">커뮤니티 연결</h3>
+                            <p class="text-gray-700 text-sm text-center">비슷한 관심사와 목표를 가진 또래 커뮤니티를 소개합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- CTA 섹션 -->
+    <section class="py-12 bg-gradient-to-r from-blue-600 to-blue-400 text-white feature-animation delay-5">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">지금 바로 자가진단을 시작해보세요</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">
+                자신의 디지털 미디어 이용 현황과 역량을 객관적으로 파악하고, 
+                개인 맞춤형 교육 콘텐츠로 디지털 리터러시 능력을 향상시켜보세요.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">자가진단 시작하기</a>
+                <a href="index.html#features" class="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition">다른 기능 살펴보기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">AI 기반 청소년 맞춤형 디지털 미디어 리터러시 교육 플랫폼</h4>
+                    <p class="text-gray-400">2025년 여성가족부 AI·데이터 융복합 아이디어 제안</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">바로가기</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html#overview" class="hover:text-white transition">개요</a></li>
+                        <li><a href="index.html#features" class="hover:text-white transition">주요 기능</a></li>
+                        <li><a href="index.html#data" class="hover:text-white transition">데이터 활용</a></li>
+                        <li><a href="index.html#ai" class="hover:text-white transition">AI 기술</a></li>
+                        <li><a href="index.html#benefits" class="hover:text-white transition">기대효과</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">연락처</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>sanoramyun8@gmail.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2"></i>
+                            <span>010-7939-3123</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>제안자: 박용환</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-500">
+                <p>&copy; 2025 AI 기반 청소년 맞춤형 디지털 미디어 리터러시 교육 플랫폼. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 자바스크립트 -->
+    <script>
+        // 모바일 메뉴 토글
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 애니메이션 실행
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.feature-animation');
+            animatedElements.forEach(element => {
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>

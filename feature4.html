@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>위험요소 알림 시스템 | AI 기반 청소년 맞춤형 디지털 미디어 리터러시 교육 플랫폼</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#EF4444',
+                        secondary: '#3B82F6',
+                        accent: '#10B981',
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .gradient-bg {
+            background: linear-gradient(90deg, #EF4444 0%, #F97316 100%);
+        }
+        .feature-animation {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        
+        .alert-pulse {
+            position: relative;
+        }
+        .alert-pulse::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            background-color: rgba(239, 68, 68, 0.4);
+            z-index: -1;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            70% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        .risk-alert {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        .risk-alert:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- 네비게이션 -->
+    <nav class="gradient-bg text-white shadow-lg fixed w-full z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold">디지털 리터러시 AI</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html#overview" class="hover:text-gray-200">개요</a>
+                <a href="index.html#features" class="hover:text-gray-200">주요 기능</a>
+                <a href="index.html#data" class="hover:text-gray-200">데이터 활용</a>
+                <a href="index.html#ai" class="hover:text-gray-200">AI 기술</a>
+                <a href="index.html#benefits" class="hover:text-gray-200">기대효과</a>
+            </div>
+            <button class="md:hidden text-white focus:outline-none" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- 모바일 메뉴 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-2">
+                <a href="index.html#overview" class="hover:text-gray-200">개요</a>
+                <a href="index.html#features" class="hover:text-gray-200">주요 기능</a>
+                <a href="index.html#data" class="hover:text-gray-200">데이터 활용</a>
+                <a href="index.html#ai" class="hover:text-gray-200">AI 기술</a>
+                <a href="index.html#benefits" class="hover:text-gray-200">기대효과</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 헤더 -->
+    <header class="pt-24 pb-12 md:pt-32 md:pb-24 bg-gradient-to-r from-red-600 to-orange-500 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <div class="feature-animation">
+                <div class="inline-block bg-white p-3 rounded-full mb-6 alert-pulse">
+                    <i class="fas fa-exclamation-triangle text-red-600 text-3xl"></i>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">위험요소 알림 시스템</h1>
+                <p class="text-xl max-w-3xl mx-auto">유해환경 노출 위험이 높은 경우 사전 알림 및 대응 가이드를 제공하여 청소년을 안전하게 보호합니다.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="py-16">
+        <div class="container mx-auto px-4">
+            <!-- 개요 섹션 -->
+            <section class="mb-16 feature-animation delay-1">
+                <h2 class="text-3xl font-bold mb-8 text-center">위험요소 알림 시스템 개요</h2>
+                <div class="bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <p class="text-gray-700 mb-6">
+                        위험요소 알림 시스템은 청소년의 디지털 미디어 이용 패턴과 행동을 분석하여 사이버 폭력, 디지털 과의존, 유해 콘텐츠 노출 등 
+                        다양한 온라인 위험을 사전에 탐지하고 알림을 제공하는 기능입니다. 여성가족부의 청소년 미디어 관련 
+                        공공데이터와 AI 알고리즘을 활용하여 개인별 위험 요소를 예측하고, 맞춤형 대응 방안을 제시합니다.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-red-600">위험 감지 영역</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-red-500 mt-1 mr-2"></i>
+                                    <span>디지털 과의존 및 중독 위험</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-red-500 mt-1 mr-2"></i>
+                                    <span>사이버 폭력 및 괴롭힘</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-red-500 mt-1 mr-2"></i>
+                                    <span>개인정보 유출 및 프라이버시 침해</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-red-500 mt-1 mr-2"></i>
+                                    <span>유해 콘텐츠 노출</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-red-500 mt-1 mr-2"></i>
+                                    <span>디지털 사기 및 피싱 위험</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-red-600">알림 시스템 특징</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-bell text-orange-500 mt-1 mr-2"></i>
+                                    <span>실시간 위험 탐지 및 즉각적 알림</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-bell text-orange-500 mt-1 mr-2"></i>
+                                    <span>위험 수준별 차별화된 알림 제공</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-bell text-orange-500 mt-1 mr-2"></i>
+                                    <span>상황별 맞춤형 대응 가이드 제시</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-bell text-orange-500 mt-1 mr-2"></i>
+                                    <span>학부모 및 교사 연계 알림 옵션</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-bell text-orange-500 mt-1 mr-2"></i>
+                                    <span>위험 예방을 위한 장기적 솔루션 제안</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 위험요소 감지 기술 섹션 -->
+            <section class="mb-16 feature-animation delay-2">
+                <h2 class="text-3xl font-bold mb-8 text-center">위험요소 감지 기술</h2>
+                <div class="max-w-5xl mx-auto">
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <div class="grid md:grid-cols-2 gap-8 items-center mb-8">
+                            <div>
+                                <h3 class="text-xl font-semibold mb-4 text-red-600">AI 기반 위험 예측 모델</h3>
+                                <p class="text-gray-700 mb-4">
+                                    여성가족부의 청소년 매체이용 및 유해환경 실태조사 데이터를 기반으로 훈련된 머신러닝 알고리즘이 
+                                    청소년의 미디어 이용 패턴과 행동을 분석하여 위험 요소를 사전에 예측합니다.
+                                </p>
+                                <ul class="space-y-2 text-gray-700">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-cogs text-gray-500 mt-1 mr-2"></i>
+                                        <span>랜덤 포레스트, XGBoost 등 분류 알고리즘 활용</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-cogs text-gray-500 mt-1 mr-2"></i>
+                                        <span>행동 패턴 변화 감지를 위한 시계열 분석</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-cogs text-gray-500 mt-1 mr-2"></i>
+                                        <span>자연어 처리(NLP)를 통한 텍스트 기반 위험 탐지</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-50 p-6 rounded-lg">
+                                <div class="relative h-64">
+                                    <img src="images/risk_detection_model.svg" alt="위험 탐지 모델 시각화" class="w-full h-full object-cover rounded-lg">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold mb-4 text-red-600">위험 점수 산출 방식</h3>
+                            <div class="bg-gray-50 p-6 rounded-lg">
+                                <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                                    <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                                        <div class="text-lg font-semibold mb-2">이용 패턴</div>
+                                        <div class="text-sm text-gray-600">× 0.25</div>
+                                        <div class="h-1 bg-red-500 w-full mt-2"></div>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                                        <div class="text-lg font-semibold mb-2">콘텐츠 유형</div>
+                                        <div class="text-sm text-gray-600">× 0.20</div>
+                                        <div class="h-1 bg-red-500 w-full mt-2"></div>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                                        <div class="text-lg font-semibold mb-2">이용 시간대</div>
+                                        <div class="text-sm text-gray-600">× 0.15</div>
+                                        <div class="h-1 bg-red-500 w-full mt-2"></div>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                                        <div class="text-lg font-semibold mb-2">위험 행동</div>
+                                        <div class="text-sm text-gray-600">× 0.25</div>
+                                        <div class="h-1 bg-red-500 w-full mt-2"></div>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                                        <div class="text-lg font-semibold mb-2">환경 요인</div>
+                                        <div class="text-sm text-gray-600">× 0.15</div>
+                                        <div class="h-1 bg-red-500 w-full mt-2"></div>
+                                    </div>
+                                </div>
+                                <div class="mt-6 text-center text-sm text-gray-600">
+                                    위험 점수 = (이용 패턴 × 0.25) + (콘텐츠 유형 × 0.20) + (이용 시간대 × 0.15) + (위험 행동 × 0.25) + (환경 요인 × 0.15)
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-red-600">위험 수준 분류</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-4 h-4 rounded-full bg-green-500 mr-2"></div>
+                                        <h4 class="font-semibold">안전 (0-25점)</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-700">
+                                        위험 요소가 없거나 매우 낮은 수준. 주기적인 모니터링만 유지합니다.
+                                    </p>
+                                </div>
+                                <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-4 h-4 rounded-full bg-yellow-500 mr-2"></div>
+                                        <h4 class="font-semibold">주의 (26-50점)</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-700">
+                                        잠재적 위험 요소가 감지됨. 예방적 조치와 관련 교육을 제안합니다.
+                                    </p>
+                                </div>
+                                <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-4 h-4 rounded-full bg-orange-500 mr-2"></div>
+                                        <h4 class="font-semibold">경고 (51-75점)</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-700">
+                                        위험 수준이 높음. 즉각적인 알림과 구체적인 대응 가이드를 제공합니다.
+                                    </p>
+                                </div>
+                                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-4 h-4 rounded-full bg-red-500 mr-2"></div>
+                                        <h4 class="font-semibold">위험 (76-100점)</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-700">
+                                        심각한 위험 상황. 긴급 알림 및 학부모/교사 연계 지원을 제공합니다.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 알림 유형 및 대응 가이드 섹션 -->
+            <section class="mb-16 feature-animation delay-3">
+                <h2 class="text-3xl font-bold mb-8 text-center">알림 유형 및 대응 가이드</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden risk-alert">
+                        <div class="bg-red-600 text-white p-4">
+                            <h3 class="font-semibold text-lg">디지털 과의존 위험 알림</h3>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-1/4">
+                                    <div class="p-3 bg-red-100 rounded-full inline-block">
+                                        <i class="fas fa-mobile-alt text-red-600 text-2xl"></i>
+                                    </div>
+                                </div>
+                                <div class="w-3/4">
+                                    <div class="text-sm text-gray-500 mb-1">위험 수준</div>
+                                    <div class="flex">
+                                        <div class="w-3 h-3 rounded-full bg-red-500 mr-1"></div>
+                                        <div class="w-3 h-3 rounded-full bg-red-500 mr-1"></div>
+                                        <div class="w-3 h-3 rounded-full bg-red-500 mr-1"></div>
+                                        <div class="w-3 h-3 rounded-full bg-gray-300 mr-1"></div>
+                                        <div class="w-3 h-3 rounded-full bg-gray-300"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="text-sm font-medium mb-2">알림 트리거 조건</div>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• 일일 미디어 이용 시간 또래 평균의 150% 초과</li>
+                                    <li>• 연속 사용 시간 2시간 초과</li>
+                                    <li>• 심야 시간대(0시-5시) 지속적 접속 패턴</li>
+                                    <li>• 학업 및 일상생활 방해 징후</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                <div class="text-sm font-medium mb-2">대응 가이드</div>
+                                <ol class="text-sm text-gray-700 space-y-2">
+                                    <li>1. <span class="font-medium">디지털 디톡스 플랜:</span> 점진적인 미디어 사용 시간 감소 일정 제시</li>
+                                    <li>2. <span class="font-medium">사용 제한 설정:</span> 특정 앱/사이트 사용 제한 및 알림 설정 방법 안내</li>
+                                    <li>3. <span class="font-medium">대체 활동 추천:</span> 오프라인 활동 및 취미 제안</li>
+                                    <li>4. <span class="font-medium">자가 모니터링 도구:</span> 미디어 이용 습관 점검 도구 제공</li>
+                                </ol>
+                            </div>
+                            <div>
+                                <div class="text-sm font-medium mb-2">추천 교육 콘텐츠</div>
+                                <div class="flex space-x-2">
+                                    <a href="#" class="inline-block px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs">디지털 균형 마스터</a>
+                                    <a href="#" class="inline-block px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs">스마트폰 다이어트</a>
+                                    <a href="#" class="inline-block px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs">건강한 미디어 이용</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden risk-alert">
+                        <div class="bg-orange-600 text-white p-4">
+                            <h3 class="font-semibold text-lg">사이버 폭력 위험 알림</h3>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-1/4">
+                                    <div class="p-3 bg-orange-100 rounded-full inline-block">
+                                        <i class="fas fa-comments text-orange-600 text-2xl"></i>
+                                    </div>
+                                </div>
+                                <div class="w-3/4">
+                                    <div class="text-sm text-gray-500 mb-1">위험 수준</div>
+                                    <div class="flex">
+                                        <div class="w-3 h-3 rounded-full bg-orange-500 mr-1"></div>
+                                        <div class="w-3 h-3 rounded-full bg-orange-500 mr-1"></div>
+                                        <div class="w-3 h-3 rounded-full bg-gray-300 mr-1"></div>
+                                        <div class="w-3 h-3 rounded-full bg-gray-300 mr-1"></div>
+                                        <div class="w-3 h-3 rounded-full bg-gray-300"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="text-sm font-medium mb-2">알림 트리거 조건</div>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• 공격적/혐오 표현이 포함된 메시지 감지</li>
+                                    <li>• 특정 대화방에서의 갑작스러운 배제 현상</li>
+                                    <li>• 온라인 괴롭힘 관련 키워드 탐지</li>
+                                    <li>• 행동 및 소통 패턴의 급격한 변화</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                <div class="text-sm font-medium mb-2">대응 가이드</div>
+                                <ol class="text-sm text-gray-700 space-y-2">
+                                    <li>1. <span class="font-medium">증거 수집:</span> 관련 메시지나 포스팅 스크린샷 저장 방법</li>
+                                    <li>2. <span class="font-medium">차단 및 신고:</span> 플랫폼별 사용자 차단 및 신고 절차 안내</li>
+                                    <li>3. <span class="font-medium">신뢰할 수 있는 성인에게 알리기:</span> 부모, 교사, 상담사 등 도움 요청 방법</li>
+                                    <li>4. <span class="font-medium">법적 대응:</span> 심각한 경우 관련 기관 연계 지원</li>
+                                </ol>
+                            </div>
+                            <div>
+                                <div class="text-sm font-medium mb-2">추천 교육 콘텐츠</div>
+                                <div class="flex space-x-2">
+                                    <a href="#" class="inline-block px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs">사이버 폭력 대응법</a>
+                                    <a href="#" class="inline-block px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs">디지털 시민 시뮬레이션</a>
+                                    <a href="#" class="inline-block px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs">온라인 소통 윤리</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden risk-alert">
+                        <div class="bg-yellow-600 text-white p-4">
+                            <h3 class="font-semibold text-lg">개인정보 유출 위험 알림</h3>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-1/4">
+                                    <div class="p-3 bg-yellow-100 rounded-full inline-block">
+                                        <i class="fas fa-user-shield text-yellow-600 text-2xl"></i>
+                                    </div>
+                                </div>
+                                <div class="w-3/4">
+                                    <div class="text-sm text-gray-500 mb-1">위험 수준</div>
+                                    <div class="flex">
+                                        <div class="w-3 h-3 rounded-full bg-yellow-500 mr-1"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-500 mr-1"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-500 mr-1"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-500 mr-1"></div>
+                        <div class="w-3 h-3 rounded-full bg-gray-300"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <div class="text-sm font-medium mb-2">알림 트리거 조건</div>
+                <ul class="text-sm text-gray-700 space-y-1">
+                    <li>• 개인 식별 정보(주소, 전화번호 등) 공개 패턴</li>
+                    <li>• 불필요한 위치 정보 공유</li>
+                    <li>• 의심스러운 앱/웹사이트의 과도한 정보 요청</li>
+                    <li>• 비정상적인 계정 접근 시도</li>
+                </ul>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                <div class="text-sm font-medium mb-2">대응 가이드</div>
+                <ol class="text-sm text-gray-700 space-y-2">
+                    <li>1. <span class="font-medium">즉시 정보 삭제:</span> 공개된 개인정보 삭제 방법 안내</li>
+                    <li>2. <span class="font-medium">계정 보안 강화:</span> 비밀번호 변경 및 2단계 인증 설정</li>
+                    <li>3. <span class="font-medium">앱/사이트 권한 검토:</span> 불필요한 권한 제거 방법</li>
+                    <li>4. <span class="font-medium">개인정보 노출 점검:</span> 주요 계정 보안 상태 확인</li>
+                </ol>
+            </div>
+            <div>
+                <div class="text-sm font-medium mb-2">추천 교육 콘텐츠</div>
+                <div class="flex space-x-2">
+                    <a href="#" class="inline-block px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs">디지털 방어막</a>
+                    <a href="#" class="inline-block px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs">개인정보 보호 기술</a>
+                    <a href="#" class="inline-block px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs">안전한 SNS 활용법</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden risk-alert">
+        <div class="bg-purple-600 text-white p-4">
+            <h3 class="font-semibold text-lg">유해 콘텐츠 노출 위험 알림</h3>
+        </div>
+        <div class="p-6">
+            <div class="flex items-center mb-4">
+                <div class="w-1/4">
+                    <div class="p-3 bg-purple-100 rounded-full inline-block">
+                        <i class="fas fa-eye-slash text-purple-600 text-2xl"></i>
+                    </div>
+                </div>
+                <div class="w-3/4">
+                    <div class="text-sm text-gray-500 mb-1">위험 수준</div>
+                    <div class="flex">
+                        <div class="w-3 h-3 rounded-full bg-purple-500 mr-1"></div>
+                        <div class="w-3 h-3 rounded-full bg-purple-500 mr-1"></div>
+                        <div class="w-3 h-3 rounded-full bg-purple-500 mr-1"></div>
+                        <div class="w-3 h-3 rounded-full bg-purple-500 mr-1"></div>
+                        <div class="w-3 h-3 rounded-full bg-gray-300"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <div class="text-sm font-medium mb-2">알림 트리거 조건</div>
+                <ul class="text-sm text-gray-700 space-y-1">
+                    <li>• 연령 부적합 콘텐츠 접근 시도</li>
+                    <li>• 유해 키워드 검색 패턴</li>
+                    <li>• 위험 사이트 방문 시도</li>
+                    <li>• 불법/유해 콘텐츠 추천 알고리즘 영향</li>
+                </ul>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                <div class="text-sm font-medium mb-2">대응 가이드</div>
+                <ol class="text-sm text-gray-700 space-y-2">
+                    <li>1. <span class="font-medium">콘텐츠 필터링:</span> 안전 모드 및 콘텐츠 필터 설정 방법</li>
+                    <li>2. <span class="font-medium">검색 기록 관리:</span> 불필요한 콘텐츠 기록 삭제 및 관리</li>
+                    <li>3. <span class="font-medium">안전한 대안 제시:</span> 연령에 적합한 콘텐츠 추천</li>
+                    <li>4. <span class="font-medium">추천 알고리즘 재설정:</span> 플랫폼별 관심사 재설정 방법</li>
+                </ol>
+            </div>
+            <div>
+                <div class="text-sm font-medium mb-2">추천 교육 콘텐츠</div>
+                <div class="flex space-x-2">
+                    <a href="#" class="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs">미디어 콘텐츠 평가</a>
+                    <a href="#" class="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs">정보 필터링</a>
+                    <a href="#" class="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs">건강한 미디어 소비</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- 알림 시스템 시뮬레이션 섹션 -->
+<section class="mb-16 feature-animation delay-4">
+<h2 class="text-3xl font-bold mb-8 text-center">알림 시스템 시뮬레이션</h2>
+<div class="max-w-5xl mx-auto">
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="bg-gradient-to-r from-red-500 to-orange-600 text-white p-8 md:flex items-center">
+            <div class="md:w-2/3 mb-6 md:mb-0 md:pr-6">
+                <h3 class="text-2xl font-bold mb-2">실시간 위험 알림 시스템</h3>
+                <p class="text-white text-opacity-90 mb-4">
+                    위험 상황 발생 시 즉각적인 알림과 맞춤형 대응 가이드를 제공하여 청소년이 안전하게 
+                    디지털 환경을 이용할 수 있도록 돕습니다. 상황별 시뮬레이션을 통해 효과적인 대응 방법을 연습해 볼 수 있습니다.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">실시간 알림</span>
+                    <span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">맞춤형 가이드</span>
+                    <span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">대응 시뮬레이션</span>
+                    <span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">학부모 연계</span>
+                </div>
+            </div>
+            <div class="md:w-1/3">
+                <img src="images/alert_system_visualization.svg" alt="알림 시스템 시각화" class="rounded-lg shadow-lg">
+            </div>
+        </div>
+        <div class="p-6">
+            <div class="mb-8">
+                <h4 class="text-xl font-semibold mb-4">알림 인터페이스 예시</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-exclamation-triangle text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">위험 알림</div>
+                                <div class="text-xs text-gray-500">방금 전</div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-3">
+                            디지털 과의존 위험이 감지되었습니다. 오늘 스마트폰 사용 시간이 5시간을 초과했습니다.
+                        </p>
+                        <div class="flex space-x-2">
+                            <button class="bg-red-500 text-white px-3 py-1 rounded text-sm">대응 가이드</button>
+                            <button class="bg-gray-200 text-gray-700 px-3 py-1 rounded text-sm">나중에</button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-shield-alt text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">보안 알림</div>
+                                <div class="text-xs text-gray-500">10분 전</div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-3">
+                            의심스러운 앱이 과도한 개인정보 접근 권한을 요청하고 있습니다. 확인이 필요합니다.
+                        </p>
+                        <div class="flex space-x-2">
+                            <button class="bg-orange-500 text-white px-3 py-1 rounded text-sm">권한 검토</button>
+                            <button class="bg-gray-200 text-gray-700 px-3 py-1 rounded text-sm">무시</button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-eye-slash text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">콘텐츠 알림</div>
+                                <div class="text-xs text-gray-500">30분 전</div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-3">
+                            최근 검색 패턴이 연령에 부적합한 콘텐츠로 이어질 수 있습니다. 대안을 확인하세요.
+                        </p>
+                        <div class="flex space-x-2">
+                            <button class="bg-purple-500 text-white px-3 py-1 rounded text-sm">대안 보기</button>
+                            <button class="bg-gray-200 text-gray-700 px-3 py-1 rounded text-sm">설정</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-8">
+                <h4 class="text-xl font-semibold mb-4">대응 시뮬레이션</h4>
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="text-center mb-4">
+                        <h5 class="font-semibold text-lg">사이버 폭력 대응 시뮬레이션</h5>
+                        <p class="text-sm text-gray-600">다양한 사이버 폭력 상황에서의 대처 방법을 연습해보세요.</p>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm mb-4">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                                <span class="font-semibold text-blue-600">A</span>
+                            </div>
+                            <div class="flex-1">
+                                <div class="bg-blue-100 rounded-lg p-3 text-gray-700 text-sm">
+                                    너 어제 발표 진짜 웃겼다ㅋㅋ 애들이 다 웃음거리로 생각하는거 알고 있어?
+                                </div>
+                                <div class="text-xs text-gray-500 mt-1">오전 10:15</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mb-3">
+                        <p class="text-sm font-medium">어떻게 대응하시겠습니까?</p>
+                    </div>
+                    
+                    <div class="space-y-3 mb-4">
+                        <div class="bg-white p-3 rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50 transition text-sm">
+                            "그냥 장난으로 한 말이야. 너무 심각하게 받아들이지 마."
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50 transition text-sm">
+                            "나를 웃음거리로 만드는 말은 하지 말아줘. 기분이 나쁘다."
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50 transition text-sm">
+                            "더 이상 이런 메시지를 보내지 말아줘. 계속되면 어른에게 알릴 거야."
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50 transition text-sm">
+                            (응답하지 않고 차단 및 증거 저장)
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button class="bg-red-500 text-white px-4 py-2 rounded-lg">시뮬레이션 시작하기</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="text-xl font-semibold mb-4">학부모/교사 연계 시스템</h4>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h5 class="font-medium text-red-600 mb-3">학부모 알림 설정</h5>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-center">
+                                <input type="checkbox" id="parent1" class="mr-2" checked>
+                                <label for="parent1">위험 수준 '경고' 이상 발생 시 알림</label>
+                            </li>
+                            <li class="flex items-center">
+                                <input type="checkbox" id="parent2" class="mr-2" checked>
+                                <label for="parent2">지속적인 디지털 과의존 패턴 감지 시</label>
+                            </li>
+                            <li class="flex items-center">
+                                <input type="checkbox" id="parent3" class="mr-2" checked>
+                                <label for="parent3">사이버 폭력 의심 상황 발생 시</label>
+                            </li>
+                            <li class="flex items-center">
+                                <input type="checkbox" id="parent4" class="mr-2">
+                                <label for="parent4">모든 유해 콘텐츠 접근 시도 알림</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h5 class="font-medium text-red-600 mb-3">교사 연계 지원</h5>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>학급 내 사이버 폭력 징후 조기 감지 시스템</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>수업 중 디지털 미디어 적정 활용 가이드</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>디지털 시민 교육 자료 및 프로그램 제공</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>집단 단위 미디어 리터러시 교육 지원</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- 데이터 활용 및 개인정보 보호 섹션 -->
+<section class="feature-animation delay-5">
+<h2 class="text-3xl font-bold mb-8 text-center">데이터 활용 및 개인정보 보호</h2>
+<div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+    <p class="text-gray-700 mb-8 text-center">
+        청소년의
+        개인정보와 프라이버시를 보호하면서 효과적인 위험요소 탐지 및 알림 서비스를 제공하기 위한 원칙과 방안을 안내합니다.
+    </p>
+    
+    <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <div>
+            <h3 class="text-xl font-semibold mb-4 text-red-600">데이터 활용 원칙</h3>
+            <ul class="space-y-3 text-gray-700">
+                <li class="flex items-start">
+                    <i class="fas fa-check-square text-red-500 mt-1 mr-2"></i>
+                    <span>최소 필요 데이터 수집 원칙 준수</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-square text-red-500 mt-1 mr-2"></i>
+                    <span>모든 데이터 처리에 명시적 동의 획득</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-square text-red-500 mt-1 mr-2"></i>
+                    <span>데이터 처리 목적 및 범위 투명하게 공개</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-square text-red-500 mt-1 mr-2"></i>
+                    <span>데이터 활용 결과에 대한 설명 가능성 확보</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-square text-red-500 mt-1 mr-2"></i>
+                    <span>제3자 데이터 공유 최소화 및 통제</span>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="text-xl font-semibold mb-4 text-red-600">개인정보 보호 조치</h3>
+            <ul class="space-y-3 text-gray-700">
+                <li class="flex items-start">
+                    <i class="fas fa-shield-alt text-red-500 mt-1 mr-2"></i>
+                    <span>모든 개인정보 암호화 저장 및 전송</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-shield-alt text-red-500 mt-1 mr-2"></i>
+                    <span>단말기 내 로컬 분석 우선 처리</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-shield-alt text-red-500 mt-1 mr-2"></i>
+                    <span>익명화 및 가명화 기술 적용</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-shield-alt text-red-500 mt-1 mr-2"></i>
+                    <span>사용자의 데이터 조회 및 삭제 권한 보장</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-shield-alt text-red-500 mt-1 mr-2"></i>
+                    <span>정기적인 보안 점검 및 취약점 관리</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="bg-gray-50 p-6 rounded-lg">
+        <h3 class="text-xl font-semibold mb-4 text-center text-red-600">사용자 데이터 관리 권한</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+                <div class="p-2 bg-red-100 rounded-full inline-block mb-2">
+                    <i class="fas fa-eye text-red-600"></i>
+                </div>
+                <h4 class="font-medium mb-1">조회 권한</h4>
+                <p class="text-xs text-gray-600">수집된 데이터 확인</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+                <div class="p-2 bg-red-100 rounded-full inline-block mb-2">
+                    <i class="fas fa-edit text-red-600"></i>
+                </div>
+                <h4 class="font-medium mb-1">수정 권한</h4>
+                <p class="text-xs text-gray-600">부정확한 정보 변경</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+                <div class="p-2 bg-red-100 rounded-full inline-block mb-2">
+                    <i class="fas fa-trash-alt text-red-600"></i>
+                </div>
+                <h4 class="font-medium mb-1">삭제 권한</h4>
+                <p class="text-xs text-gray-600">원치 않는 데이터 제거</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+                <div class="p-2 bg-red-100 rounded-full inline-block mb-2">
+                    <i class="fas fa-download text-red-600"></i>
+                </div>
+                <h4 class="font-medium mb-1">이동 권한</h4>
+                <p class="text-xs text-gray-600">데이터 내보내기</p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+</div>
+</main>
+
+<!-- CTA 섹션 -->
+<section class="py-12 bg-gradient-to-r from-red-600 to-orange-500 text-white">
+<div class="container mx-auto px-4 text-center">
+<h2 class="text-3xl font-bold mb-4">안전한 디지털 환경을 위한 첫걸음</h2>
+<p class="text-xl mb-8 max-w-3xl mx-auto">
+    위험요소 알림 시스템으로 유해한 디지털 환경으로부터 청소년을 보호하고,
+    건강한 미디어 이용 습관을 형성하세요.
+</p>
+<div class="flex flex-col md:flex-row justify-center gap-4">
+    <a href="feature1.html" class="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">자가진단 시작하기</a>
+    <a href="index.html#features" class="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition">다른 기능 살펴보기</a>
+</div>
+</div>
+</section>
+
+<!-- 푸터 -->
+<footer class="bg-dark text-white py-12">
+<div class="container mx-auto px-4">
+<div class="grid md:grid-cols-3 gap-8 mb-8">
+    <div>
+        <h4 class="text-xl font-semibold mb-4">AI 기반 청소년 맞춤형 디지털 미디어 리터러시 교육 플랫폼</h4>
+        <p class="text-gray-400">2025년 여성가족부 AI·데이터 융복합 아이디어 제안</p>
+    </div>
+    <div>
+        <h4 class="text-xl font-semibold mb-4">바로가기</h4>
+        <ul class="space-y-2 text-gray-400">
+            <li><a href="index.html#overview" class="hover:text-white transition">개요</a></li>
+            <li><a href="index.html#features" class="hover:text-white transition">주요 기능</a></li>
+            <li><a href="index.html#data" class="hover:text-white transition">데이터 활용</a></li>
+            <li><a href="index.html#ai" class="hover:text-white transition">AI 기술</a></li>
+            <li><a href="index.html#benefits" class="hover:text-white transition">기대효과</a></li>
+        </ul>
+    </div>
+    <div>
+        <h4 class="text-xl font-semibold mb-4">연락처</h4>
+        <ul class="space-y-2 text-gray-400">
+            <li class="flex items-center">
+                <i class="fas fa-envelope mr-2"></i>
+                <span>sanoramyun8@gmail.com</span>
+            </li>
+            <li class="flex items-center">
+                <i class="fas fa-phone mr-2"></i>
+                <span>010-7939-3123</span>
+            </li>
+            <li class="flex items-center">
+                <i class="fas fa-map-marker-alt mr-2"></i>
+                <span>제안자: 박용환</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="border-t border-gray-700 pt-8 text-center text-gray-500">
+    <p>&copy; 2025 AI 기반 청소년 맞춤형 디지털 미디어 리터러시 교육 플랫폼. All rights reserved.</p>
+</div>
+</div>
+</footer>
+
+<!-- 자바스크립트 -->
+<script>
+// 모바일 메뉴 토글
+document.getElementById('menu-toggle').addEventListener('click', function() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenu.classList.toggle('hidden');
+});
+
+// 애니메이션 실행
+document.addEventListener('DOMContentLoaded', function() {
+    const animatedElements = document.querySelectorAll('.feature-animation');
+    animatedElements.forEach(element => {
+        setTimeout(() => {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+        }, 100);
+    });
+    
+    // 위험 알림 카드 효과
+    const riskAlerts = document.querySelectorAll('.risk-alert');
+    riskAlerts.forEach(alert => {
+        alert.addEventListener('mouseenter', function() {
+            this.classList.add('shadow-xl');
+        });
+        alert.addEventListener('mouseleave', function() {
+            this.classList.remove('shadow-xl');
+        });
+    });
+});
+</script>
+</body>
+</html>
