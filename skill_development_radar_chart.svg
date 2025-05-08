@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="320" height="300" viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+  <title>역량별 발달 현황 차트</title>
+  <defs>
+    <style>
+      .axis-label { font-family: 'Noto Sans KR', sans-serif; font-size: 11px; fill: #4b5563; text-anchor: middle; }
+      .grid-line { stroke: #e5e7eb; stroke-width: 1; }
+      .data-shape { fill: rgba(59, 130, 246, 0.5); stroke: #3b82f6; stroke-width: 2; } /* Blue */
+      .data-point { fill: #3b82f6; }
+    </style>
+  </defs>
+
+  <g transform="translate(150, 150)"> <polygon points="100,0 0,100 -100,0 0,-100" fill="none" class="grid-line" /> <polygon points="75,0 0,75 -75,0 0,-75" fill="none" class="grid-line" />   <polygon points="50,0 0,50 -50,0 0,-50" fill="none" class="grid-line" />   <polygon points="25,0 0,25 -25,0 0,-25" fill="none" class="grid-line" />   <line x1="0" y1="0" x2="100" y2="0" class="grid-line" /> <line x1="0" y1="0" x2="0" y2="-100" class="grid-line" /> <line x1="0" y1="0" x2="-100" y2="0" class="grid-line" /> <line x1="0" y1="0" x2="0" y2="100" class="grid-line" /> <polygon points="85,0 0,-82 -70,0 0,65" class="data-shape" />
+
+    <circle cx="85" cy="0" r="3" class="data-point"/>
+    <circle cx="0" cy="-82" r="3" class="data-point"/>
+    <circle cx="-70" cy="0" r="3" class="data-point"/>
+    <circle cx="0" cy="65" r="3" class="data-point"/>
+
+    <text x="120" y="5" class="axis-label">정보 검색/평가</text>
+    <text x="0" y="-110" class="axis-label">디지털 시민의식</text>
+    <text x="-115" y="5" class="axis-label">디지털 창작 역량</text>
+    <text x="0" y="115" class="axis-label">디지털 안전 의식</text>
+  </g>
+</svg>
